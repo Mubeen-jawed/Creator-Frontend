@@ -20,7 +20,7 @@ function GetStarted() {
     videoDuration: "15 sec",
     price: "0",
   });
-  const [additionalNotes, setAdditionalNotes] = useState(null);
+  const [additionalNotes, setAdditionalNotes] = useState("");
   const [videoCounter, setVideoCounter] = useState(1);
 
   const videoDetails = {};
@@ -56,7 +56,7 @@ function GetStarted() {
   return (
     <div className="bg-gray-100">
       <TopNavbar />
-      <div className="   max-w-7xl py-20 xl:py-28 xl:m-auto h-full">
+      <div className=" max-w-7xl py-20 xl:py-28 xl:m-auto h-full">
         <div className="flex items-center">
           <ProgressBar text="Video Details" active={true} />
           <ProgressBar text="Payment" />

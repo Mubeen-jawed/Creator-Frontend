@@ -9,13 +9,20 @@ const campaignCreated = () => {
   const videoDetails = JSON.parse(localStorage.getItem("videoDetails"));
   const videoBrief = JSON.parse(localStorage.getItem("videoBrief"));
 
+  console.log(videoDetails);
+
   axios
-    .post("http://localhost:8080/campaignData", { data: videoDetails })
+    .post("http://localhost:8080/campaignData", {
+      videoDetails: videoDetails,
+      videoBrief: videoBrief,
+    })
     .then((res) => console.log(res.data))
     .catch((err) => console.log(err));
 
-  console.log(videoDetails);
-  console.log(videoBrief);
+  // axios
+  //   .post("http://localhost:8080/campaignData", {  })
+  //   .then((res) => console.log(res.data))
+  //   .catch((err) => console.log(err));
 
   return (
     <>

@@ -2,8 +2,9 @@
 module.exports = {
   content: [],
   theme: {
-    extend: {},
+    extend: {
+      container: ["max-w-7xl", "xl:py-28", "xl:m-auto", "h-full"],
+    },
   },
   plugins: [],
-}
-
+};

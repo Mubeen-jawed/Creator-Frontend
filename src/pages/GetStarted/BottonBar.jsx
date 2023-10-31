@@ -8,13 +8,17 @@ import PrimaryBtn from "../../components/Buttons/PrimaryBtn";
 
 function BottomBar() {
   let videoDetails = JSON.parse(localStorage.getItem("videoDetails"));
+  // console.log(videoDetails.videoType.price);
+
   let videoTypePriceStr = videoDetails.videoType.price.slice(1);
   let videoTypePriceInt = Number(videoTypePriceStr);
   let numOfVideosInt = Number(videoDetails.numOfVideos);
 
-  console.log(videoTypePriceInt);
+  let videoDurationPrice = videoDetails.videoDuration.price.slice(2);
+  console.log(videoDurationPrice);
+  let videoDurationPriceInt = Number(videoDurationPrice);
 
-  let totalPrice = videoTypePriceInt * numOfVideosInt;
+  let totalPrice = (videoTypePriceInt + videoDurationPriceInt) * numOfVideosInt;
 
   return (
     <div>
@@ -25,7 +29,8 @@ function BottomBar() {
         <NavInner className="w-full pr-3 max-w-7xl xl:m-auto flex justify-end items-center">
           <div>
             <p>
-              {videoDetails.videoType.price} x {videoDetails.numOfVideos}{" "}
+              ${videoTypePriceInt + videoDurationPriceInt} x{" "}
+              {videoDetails.numOfVideos}{" "}
               {numOfVideosInt > 1 ? "Videos" : "Video"}
             </p>
             <p>

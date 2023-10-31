@@ -104,8 +104,13 @@ export default function TopNavbar() {
             </li>
           </UlWrapper>
           <UlWrapperRight className="flexNullCenter">
+            <li className="semiBold font15 pointer capitalize">
+              <a href="/all-campaigns" style={{ padding: "10px 30px 10px 0" }}>
+                view all campaigns
+              </a>
+            </li>
             <li className="semiBold font15 pointer">
-              <a href="/become-creator" style={{ padding: "10px 30px 10px 0" }}>
+              <a href="/marketplace" style={{ padding: "10px 30px 10px 0" }}>
                 Become a Creator
               </a>
             </li>

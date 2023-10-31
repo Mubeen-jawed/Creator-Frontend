@@ -4,21 +4,21 @@ function OptionBox(info) {
   const { title, price, name, option } = info;
 
   let videoDetails = JSON.parse(localStorage.getItem("videoDetails"));
-  let videoDurationPrice = videoDetails.videoDuration.price;
-  let videoDurationPriceSort =
-    videoDurationPrice === "Included" ? 0 : videoDurationPrice.slice(2);
+  // let videoDurationPrice = videoDetails.videoDuration.price;
+  // let videoDurationPriceSort =
+  //   videoDurationPrice === "Included" ? 0 : videoDurationPrice.slice(2);
 
-  let videoDurationInt = Number(videoDurationPriceSort);
-  let priceStr = price.slice(1);
-  let priceInt = Number(priceStr);
+  // let videoDurationInt = Number(videoDurationPriceSort);
+  // let priceStr = price.slice(1);
+  // let priceInt = Number(priceStr);
 
-  let totalPrice = priceInt + videoDurationInt;
+  // let totalPrice = priceInt + videoDurationInt;
 
-  console.log(totalPrice);
+  // let totalPriceStr = totalPrice.toString;
 
   const [videoType] = useState({
     title: title,
-    price: totalPrice,
+    price: price,
   });
 
   // let options = [];
