@@ -109,8 +109,8 @@ function VideoBrief() {
 
           <div className="w-full flex justify-end mt-5">
             <PrimaryBtn
-              text="Create your video campaign"
-              to="campaign-created"
+              text="campaign overview"
+              to="campaign-overview"
               click={handleVideoCampaign}
             />
           </div>

@@ -17,7 +17,8 @@ function Payment() {
 
   //states
   const [totalPrice, setTotalPrice] = useState([]);
-  // console.log(items);
+
+  localStorage.setItem("totalPrice", totalPrice);
 
   return (
     <div className="bg-gray-100">

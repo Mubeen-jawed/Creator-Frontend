@@ -1,28 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 //elements
 import TopNavbar from "../../components/Nav/TopNavbar";
 import PrimaryBtn from "../../components/Buttons/PrimaryBtn";
 
-const campaignCreated = () => {
-  const videoDetails = JSON.parse(localStorage.getItem("videoDetails"));
-  const videoBrief = JSON.parse(localStorage.getItem("videoBrief"));
-
-  console.log(videoDetails);
-
-  axios
-    .post("http://localhost:8080/campaignData", {
-      videoDetails: videoDetails,
-      videoBrief: videoBrief,
-    })
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
-
-  // axios
-  //   .post("http://localhost:8080/campaignData", {  })
-  //   .then((res) => console.log(res.data))
-  //   .catch((err) => console.log(err));
+const CampaignCreated = () => {
+  // console.log(videoDetails);
 
   return (
     <>
@@ -43,4 +27,4 @@ const campaignCreated = () => {
   );
 };
 
-export default campaignCreated;
+export default CampaignCreated;

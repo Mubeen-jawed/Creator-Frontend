@@ -1,19 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import TopNavbar from "../../components/Nav/TopNavbar";
 
 const MarketPlace = () => {
   const [campaignData, setCampaignData] = useState([]);
+  const [creatorProfile, setCreatorProfile] = useState([]);
   const [jobClick, setJobClick] = useState(false);
   const [jobId, setJobId] = useState(null);
 
   const [proposalValue, setProposalValue] = useState("");
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/campaignData")
+      .then((res) => setCampaignData(res.data))
+      .catch((err) => console.log(err));
 
-  axios
-    .get("http://localhost:8080/campaignData")
-    .then((res) => setCampaignData(res.data))
-    .catch((err) => console.log(err));
+    const profile = JSON.parse(localStorage.getItem("userData"));
+    setCreatorProfile(profile);
+  }, []);
 
   // console.log(jobClick);
 
@@ -21,6 +26,7 @@ const MarketPlace = () => {
     axios
       .post("http://localhost:8080/proposal", {
         proposalValue: proposalValue,
+        creatorProfile: creatorProfile,
         jobId: jobId,
       })
       .then((res) => console.log(res.data))

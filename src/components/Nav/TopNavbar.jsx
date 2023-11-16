@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Link as Redirect } from "react-router-dom";
-import { Link } from "react-scroll";
+import { Link } from "react-router-dom";
+import axios from "axios";
 // Components
 import Sidebar from "../Nav/Sidebar";
 import Backdrop from "../Elements/Backdrop";
 // Assets
 import LogoIcon from "../../assets/svg/Logo";
 import BurgerIcon from "../../assets/svg/BurgerIcon";
+import { BiPaperPlane } from "react-icons/bi";
+import { MdLogout } from "react-icons/md";
+import { BsFillPersonFill } from "react-icons/bs";
 
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
+  // const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     window.addEventListener("scroll", () => setY(window.scrollY));
@@ -20,121 +25,301 @@ export default function TopNavbar() {
     };
   }, [y]);
 
+  let userData = JSON.parse(localStorage.getItem("userData"));
+
+  let userDataNull = userData === null;
+
+  if (!userDataNull) {
+    var {
+      googleId,
+      name,
+      profileImg,
+      userType: { client, creator },
+    } = userData;
+  }
+
+  function logout() {
+    axios.get("http://localhost:8080/logout");
+
+    localStorage.removeItem("userData");
+  }
+
+  // let authenticated = googleId.length > 0;
+
+  // if (typeof googleId == null) {
+  //   window.location.href = "/signup";
+  // }
+
+  // console.log(profileImg);
+
   return (
     <>
-      <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
-      {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper
-        className="flexCenter animate whiteBg"
-        style={y > 100 ? { height: "60px" } : { height: "80px" }}
-      >
-        <NavInner className="container flexSpaceCenter">
-          <Redirect className="pointer flexNullCenter" to="/">
-            <LogoIcon />
-            <h1 style={{ marginLeft: "15px" }} className="font20 extraBold">
-              fanatic
-            </h1>
-          </Redirect>
-          <BurderWrapper
-            className="pointer"
-            onClick={() => toggleSidebar(!sidebarOpen)}
+      {userDataNull ? (
+        <>
+          <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+          {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
+          <Wrapper
+            className="flexCenter animate whiteBg"
+            style={y > 100 ? { height: "60px" } : { height: "80px" }}
           >
-            <BurgerIcon />
-          </BurderWrapper>
-          <UlWrapper className="flexNullCenter">
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="home"
-                spy={true}
-                smooth={true}
-                offset={-80}
-              >
-                Home
+            <NavInner className="container flexSpaceCenter">
+              <Link className="pointer flexNullCenter" to="/">
+                <LogoIcon />
+                <h1 style={{ marginLeft: "15px" }} className="font20 extraBold">
+                  fanatic
+                </h1>
               </Link>
-            </li>
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="services"
-                spy={true}
-                smooth={true}
-                offset={-80}
+              <BurderWrapper
+                className="pointer"
+                onClick={() => toggleSidebar(!sidebarOpen)}
               >
-                Services
+                <BurgerIcon />
+              </BurderWrapper>
+              <UlWrapper className="flexNullCenter">
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="home"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="services"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Services
+                  </Link>
+                </li>
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="projects"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Projects
+                  </Link>
+                </li>
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="blog"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="pricing"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Pricing
+                  </Link>
+                </li>
+              </UlWrapper>
+              <UlWrapperRight className="flexNullCenter">
+                {/* {!userDataNull && client && (
+                  <li className="semiBold font15 pointer capitalize">
+                    <a
+                      href="/all-campaigns"
+                      style={{ padding: "10px 30px 10px 0" }}
+                    >
+                      view your campaigns
+                    </a>
+                  </li>
+                )} */}
+                <li className="semiBold font15 pointer">
+                  <a
+                    href="/marketplace"
+                    style={{ padding: "10px 30px 10px 0" }}
+                  >
+                    Become a Creator
+                  </a>
+                </li>
+                <li className="semiBold font15 pointer">
+                  <a href="/login" style={{ padding: "10px 30px 10px 0" }}>
+                    Log in
+                  </a>
+                </li>
+
+                <li className="semiBold font15 pointer flexCenter">
+                  <a
+                    href="/get-started"
+                    className="radius8 lightBg"
+                    style={{
+                      padding: "10px 15px",
+                      backgroundColor: "#580cd2",
+                      color: "white",
+                    }}
+                  >
+                    Get Started
+                  </a>
+                </li>
+              </UlWrapperRight>
+            </NavInner>
+          </Wrapper>
+        </>
+      ) : (
+        <>
+          <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
+          {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
+          <Wrapper
+            className="flexCenter animate whiteBg"
+            style={y > 100 ? { height: "60px" } : { height: "80px" }}
+            onClick={() => showOptions && setShowOptions(false)}
+          >
+            <NavInner className="container flexSpaceCenter">
+              <Link className="pointer flexNullCenter" to="/">
+                <LogoIcon />
+                <h1 style={{ marginLeft: "15px" }} className="font20 extraBold">
+                  fanatic
+                </h1>
               </Link>
-            </li>
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="projects"
-                spy={true}
-                smooth={true}
-                offset={-80}
+              <BurderWrapper
+                className="pointer"
+                onClick={() => toggleSidebar(!sidebarOpen)}
               >
-                Projects
-              </Link>
-            </li>
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="blog"
-                spy={true}
-                smooth={true}
-                offset={-80}
-              >
-                Blog
-              </Link>
-            </li>
-            <li className="semiBold font15 pointer">
-              <Link
-                activeClass="active"
-                style={{ padding: "10px 15px" }}
-                to="pricing"
-                spy={true}
-                smooth={true}
-                offset={-80}
-              >
-                Pricing
-              </Link>
-            </li>
-          </UlWrapper>
-          <UlWrapperRight className="flexNullCenter">
-            <li className="semiBold font15 pointer capitalize">
-              <a href="/all-campaigns" style={{ padding: "10px 30px 10px 0" }}>
-                view all campaigns
-              </a>
-            </li>
-            <li className="semiBold font15 pointer">
-              <a href="/marketplace" style={{ padding: "10px 30px 10px 0" }}>
-                Become a Creator
-              </a>
-            </li>
-            <li className="semiBold font15 pointer">
-              <a href="/login" style={{ padding: "10px 30px 10px 0" }}>
-                Log in
-              </a>
-            </li>
-            <li className="semiBold font15 pointer flexCenter">
-              <a
-                href="/get-started"
-                className="radius8 lightBg"
-                style={{
-                  padding: "10px 15px",
-                  backgroundColor: "#580cd2",
-                  color: "white",
-                }}
-              >
-                Get Started
-              </a>
-            </li>
-          </UlWrapperRight>
-        </NavInner>
-      </Wrapper>
+                <BurgerIcon />
+              </BurderWrapper>
+              <UlWrapper className="flexNullCenter">
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="/"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Home
+                  </Link>
+                </li>
+                {client && (
+                  <li className="semiBold font15 pointer capitalize">
+                    <a href="/all-campaigns" style={{ padding: "10px 15px" }}>
+                      view your campaigns
+                    </a>
+                  </li>
+                )}
+                {creator && (
+                  <li className="semiBold font15 pointer capitalize">
+                    <a href="/all-proposals" style={{ padding: "10px 15px" }}>
+                      view your Proposals
+                    </a>
+                  </li>
+                )}
+
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="projects"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Projects
+                  </Link>
+                </li>
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="blog"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Blog
+                  </Link>
+                </li>
+                <li className="semiBold font15 pointer">
+                  <Link
+                    activeClass="active"
+                    style={{ padding: "10px 15px" }}
+                    to="pricing"
+                    spy={true}
+                    smooth={true}
+                    offset={-80}
+                  >
+                    Pricing
+                  </Link>
+                </li>
+              </UlWrapper>
+              <UlWrapperRight className="flexNullCenter">
+                {creator && (
+                  <Link
+                    to="/messages"
+                    className="semiBold font15 pointer flex items-center flex-col pr-6"
+                  >
+                    <BiPaperPlane className="text-xl" />
+                    <p>Messages</p>
+                  </Link>
+                )}
+
+                {(client || creator) && (
+                  <Link
+                    // to="/id/creator/profile"
+                    className="semiBold font15 pointer flex flex-col justify-center items-center"
+                    onClick={() => setShowOptions(true)}
+                  >
+                    <div className="rounded-full border-2 border-black border-solid w-12 h-12 mb-1">
+                      <img className="rounded-full " src={profileImg} alt="" />
+                    </div>
+                    <p>{name}</p>
+                  </Link>
+                )}
+
+                {showOptions ? (
+                  <ul className="absolute top-20 right-0 shadow-xl p-4 w-56 bg-white flex flex-col justify-start items-start">
+                    <li className="flex">
+                      <BsFillPersonFill className="text-lg" />
+                      <Link to={`/client/${googleId}`} className="ml-1 text-lg">
+                        Profile
+                      </Link>
+                    </li>
+                    <li className="flex mt-1 cursor-pointer" onClick={logout}>
+                      <MdLogout className="text-lg" />
+                      <p className="ml-1 text-lg">Logout</p>
+                    </li>
+                  </ul>
+                ) : null}
+                {/* {creator && (
+                  <Link
+                    to="/id/creator/profile"
+                    className="semiBold font15 pointer flex flex-col justify-center items-center"
+                  >
+                    <div className="rounded-full border-2 border-black border-solid w-12 h-12 mb-1">
+                      <img className="rounded-full " src={profileImg} alt="" />
+                    </div>
+                    <p>{name}</p>
+                  </Link>
+                )} */}
+              </UlWrapperRight>
+            </NavInner>
+          </Wrapper>
+        </>
+      )}
     </>
   );
 }

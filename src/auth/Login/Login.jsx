@@ -7,6 +7,10 @@ import TopNavbar from "../../components/Nav/TopNavbar";
 import authImg from "../../assets/img/auth-img.svg";
 
 function Login() {
+  const googleAuth = () => {
+    window.open(`http://localhost:8080/auth/google/callback`, "_self");
+  };
+
   // const googleAuth = () => {
   //   window.open(
   //     `${process.env.REACT_APP_API_URL}/auth/google/callback`,
@@ -25,7 +29,7 @@ function Login() {
           </div>
           <div className="w-1/3">
             <h2 className={styles.from_heading}>Members Log in</h2>
-            <button className={styles.google_btn}>
+            <button className={styles.google_btn} onClick={googleAuth}>
               <img
                 src="https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png"
                 alt="google icon"

@@ -16,7 +16,9 @@ const PageNotFound = () => {
         </div>
 
         <div className="flex flex-col justify-center items-center pt-8">
-          <h2 className="text-4xl font-semibold mb-3">Page Not Found</h2>
+          <h2 className="text-4xl font-semibold mb-3 font-serif">
+            Page Not Found
+          </h2>
           <PrimaryBtn text="Return To Home" to="" />
         </div>
       </div>

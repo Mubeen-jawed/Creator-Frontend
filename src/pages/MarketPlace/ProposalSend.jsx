@@ -10,7 +10,7 @@ const campaignCreated = () => {
     <>
       <TopNavbar />
       <div className="flex flex-col justify-center items-center w-full h-screen">
-        <h1 className="capitalize text-4xl font-semibold">
+        <h1 className="capitalize text-4xl font-semibold font-serif">
           congrats🥳, Your Proposal Has Been Sent!
         </h1>
         {/* <h6 className="capitalize mt-1">

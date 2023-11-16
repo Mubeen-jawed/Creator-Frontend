@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 // Components
 import FullButton from "../../../components/Buttons/FullButton";
 // Assets
-import HeaderImage from "../../../assets/img/header-img.png";
+import HeaderImage from "../../../assets/img/header.png";
 import QuotesIcon from "../../../assets/svg/Quotes";
 import Dots from "../../../assets/svg/Dots";
 
@@ -13,12 +13,12 @@ export default function Header() {
     <Wrapper id="home" className="container flexSpaceCenter">
       <LeftSide className="flexCenter">
         <div>
-          <h1 className="extraBold font60">Create Content for Your Business</h1>
-          <HeaderP className="font13 semiBold">
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum.
+          <h1 className="extraBold font60 font-serif">
+            Create Content for Your Business
+          </h1>
+          <HeaderP className="text-base text-gray-700 capitalize">
+            Create your business campaigns with the largest community of content
+            creators just under your clicks.
           </HeaderP>
           <Link to="/get-started">
             <BtnWrapper onClick={() => (window.location.href = "/get-started")}>
