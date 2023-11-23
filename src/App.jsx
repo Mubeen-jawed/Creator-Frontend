@@ -21,8 +21,10 @@ import AllCampaigns from "./pages/AllCampaigns/AllCampaigns";
 import UserType from "./pages/UserType/UserType";
 import CampaignOverview from "./pages/VideoBrief/CampaignOverview";
 import ClientProfile from "./pages/UserProfile/ClientProfile";
+import CreatorProfile from "./pages/UserProfile/CreatorProfile";
 import HireCreator from "./pages/HireCreator/HireCreator";
 import Messaging from "./pages/Messaging/Messaging";
+import Address from "./pages/CreatorView/CreatorProfile/Address";
 
 import MarketPlace from "./pages/MarketPlace/MarketPlace";
 
@@ -100,10 +102,11 @@ function App() {
           <Route path="/user-type" element={<UserType />}></Route>
           <Route
             path={`/client/${googleId}`}
-            element={<ClientProfile />}
+            element={client ? <ClientProfile /> : <CreatorProfile />}
           ></Route>
           <Route path={"/hire-creator"} element={<HireCreator />}></Route>
           <Route path={`/${googleId}/messages`} element={<Messaging />}></Route>
+          <Route path="/creator-info/address" element={<Address />}></Route>
         </Routes>
       </>
     </Router>

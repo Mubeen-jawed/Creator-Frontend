@@ -33,7 +33,7 @@ const CampaignActivity = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  function messageCreator(data) {
+  function saveCreatorChatId(data) {
     localStorage.setItem("creatorChatId", data?.creatorProfile?.googleId);
   }
 
@@ -65,14 +65,15 @@ const CampaignActivity = () => {
                     </div>
                   </div>
                   <div className="flex flex-col items-end justify-start">
-                    <button
-                      onClick={() => (window.location.href = "/hire-creator")}
-                      className="bg-[#580cd2] w-28 py-2 text-white rounded-full hover:brightness-95"
+                    <Link
+                      to="/hire-creator"
+                      onClick={() => saveCreatorChatId(data)}
+                      className="bg-[#580cd2] w-28 py-2 text-white rounded-full hover:brightness-95 hover:text-white flex justify-center items-center"
                     >
                       Hire
-                    </button>
+                    </Link>
                     <Link
-                      onClick={() => messageCreator(data)}
+                      onClick={() => saveCreatorChatId(data)}
                       to={`/${googleId}/messages`}
                       className="border-[#580cd2] border-solid border-2 w-28 py-2 text-[#580cd2] rounded-full mt-4 hover:bg-gray-100 flex justify-center items-center"
                     >

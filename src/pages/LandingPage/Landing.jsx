@@ -8,8 +8,7 @@ import Projects from "../LandingPage/Sections/Projects";
 import Blog from "../LandingPage/Sections/Blog";
 import Pricing from "../LandingPage/Sections/Pricing";
 import Contact from "../LandingPage/Sections/Contact";
-import Footer from "../LandingPage/Sections/Footer";
-
+import Footer from "../../components/Nav/Footer";
 export default function Landing() {
   const [userData, setUserData] = useState(null);
 

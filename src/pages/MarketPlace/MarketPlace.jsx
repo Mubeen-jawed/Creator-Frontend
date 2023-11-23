@@ -8,8 +8,19 @@ const MarketPlace = () => {
   const [creatorProfile, setCreatorProfile] = useState([]);
   const [jobClick, setJobClick] = useState(false);
   const [jobId, setJobId] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   const [proposalValue, setProposalValue] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/userData")
+      .then((res) => setUserData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  localStorage.setItem("userData", JSON.stringify(userData));
+
   useEffect(() => {
     axios
       .get("http://localhost:8080/campaignData")

@@ -13,7 +13,7 @@ const NoData = (content) => {
   return (
     <div className="w-full h-screen flex flex-col justify-center items-center">
       <img width="20%" src={noData} alt="" />
-      <h1 className="capitalize text-4xl font-serif font-semibold mt-7 mb-3">
+      <h1 className="capitalize text-4xl font-serif mt-7 mb-3">
         {text !== undefined ? text : "not Enough data to show"}
       </h1>
 

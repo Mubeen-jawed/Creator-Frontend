@@ -43,7 +43,7 @@ const UserType = () => {
       creator: true,
     });
 
-    window.location.href = "/";
+    window.location.href = "/creator-info/address";
   }
 
   // axios.get("");
@@ -56,7 +56,7 @@ const UserType = () => {
         <h1 className="text-4xl font-semibold mt-3 mb-4 font-serif capitalize">
           How do you want to use creator?
         </h1>
-        <div className="flex w-full">
+        <div className="flex w-full cursor-default">
           <div
             onClick={handleClient}
             className="flex flex-col justify-center w-full h-60 mr-5 mt-5 p-5 bg-white border border-gray-700 border-solid rounded-lg active:bg-gray-300 hover:bg-gray-200 transition-all duration-300"
@@ -73,7 +73,7 @@ const UserType = () => {
           </div>
           <div
             onClick={handleCreator}
-            className="flex flex-col justify-center w-full h-60 mr-4 mt-5 p-5 bg-white border border-gray-700 border-solid rounded-lg active:bg-gray-300 hover:bg-gray-200 transition-all duration-300"
+            className="cursor-default flex flex-col justify-center w-full h-60 mr-4 mt-5 p-5 bg-white border border-gray-700 border-solid rounded-lg active:bg-gray-300 hover:bg-gray-200 transition-all duration-300"
           >
             <AiOutlineVideoCamera className="text-5xl mr-3 text-[#580cd2]" />
             <div className="">

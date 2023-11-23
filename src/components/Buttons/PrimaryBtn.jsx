@@ -10,7 +10,7 @@ function PrimaryBtn(props) {
     <Link
       onClick={props.click}
       to={"/" + props.to}
-      className="radius8 lightBg font-semibold ml-5 capitalize"
+      className={`radius8 lightBg font-semibold ml-5 capitalize ${props.className}`}
       style={{
         padding: "10px 15px",
         backgroundColor: "#580cd2",

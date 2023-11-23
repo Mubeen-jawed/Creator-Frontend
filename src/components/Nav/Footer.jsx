@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-scroll";
 // Assets
-import LogoImg from "../../../assets/svg/Logo";
+import LogoImg from "../../assets/svg/Logo";
 
 export default function Contact() {
   const getCurrentYear = () => {
