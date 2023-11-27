@@ -11,6 +11,7 @@ import BurgerIcon from "../../assets/svg/BurgerIcon";
 import { BiPaperPlane } from "react-icons/bi";
 import { MdLogout } from "react-icons/md";
 import { BsFillPersonFill } from "react-icons/bs";
+import { FaRegBell } from "react-icons/fa";
 
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
@@ -229,18 +230,17 @@ export default function TopNavbar() {
                   </li>
                 )}
 
-                <li className="semiBold font15 pointer">
-                  <Link
-                    activeClass="active"
-                    style={{ padding: "10px 15px" }}
-                    to="projects"
-                    spy={true}
-                    smooth={true}
-                    offset={-80}
-                  >
-                    Projects
-                  </Link>
-                </li>
+                {client && (
+                  <li className="semiBold font15 pointer">
+                    <Link
+                      activeClass="active"
+                      style={{ padding: "10px 15px" }}
+                      to="/hires"
+                    >
+                      Your Hires
+                    </Link>
+                  </li>
+                )}
                 <li className="semiBold font15 pointer">
                   <Link
                     activeClass="active"
@@ -250,7 +250,7 @@ export default function TopNavbar() {
                     smooth={true}
                     offset={-80}
                   >
-                    Blog
+                    Projects
                   </Link>
                 </li>
                 <li className="semiBold font15 pointer">
@@ -269,11 +269,26 @@ export default function TopNavbar() {
               <UlWrapperRight className="flexNullCenter">
                 {creator && (
                   <Link
-                    to="/messages"
+                    to={`/${googleId}/messages`}
                     className="semiBold font15 pointer flex items-center flex-col pr-6"
                   >
                     <BiPaperPlane className="text-xl" />
-                    <p>Messages</p>
+                    <p className="text-sm mt-1">Messages</p>
+                  </Link>
+                )}
+
+                {creator && (
+                  <Link
+                    to={`/${googleId}/alerts`}
+                    className="semiBold font15 pointer flex items-center flex-col pr-6"
+                  >
+                    <div className="mb-4">
+                      <FaRegBell className="text-xl absolute" />
+                      <div className="w-3 h-3 bg-red-600 relative -right-3 rounded-full text-[9px] text-center text-white ">
+                        1
+                      </div>
+                    </div>
+                    <p className="text-sm">Alerts</p>
                   </Link>
                 )}
 

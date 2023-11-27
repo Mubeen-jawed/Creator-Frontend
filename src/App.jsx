@@ -25,6 +25,8 @@ import CreatorProfile from "./pages/UserProfile/CreatorProfile";
 import HireCreator from "./pages/HireCreator/HireCreator";
 import Messaging from "./pages/Messaging/Messaging";
 import Address from "./pages/CreatorView/CreatorProfile/Address";
+import AllHires from "./pages/ClientView/AllHires/AllHires";
+import Alert from "./pages/AlertMessage.jsx/Alert";
 
 import MarketPlace from "./pages/MarketPlace/MarketPlace";
 
@@ -106,7 +108,9 @@ function App() {
           ></Route>
           <Route path={"/hire-creator"} element={<HireCreator />}></Route>
           <Route path={`/${googleId}/messages`} element={<Messaging />}></Route>
+          <Route path={`/${googleId}/alerts`} element={<Alert />}></Route>
           <Route path="/creator-info/address" element={<Address />}></Route>
+          <Route path="/hires" element={<AllHires />}></Route>
         </Routes>
       </>
     </Router>

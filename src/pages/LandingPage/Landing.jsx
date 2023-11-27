@@ -17,7 +17,7 @@ export default function Landing() {
       .get("http://localhost:8080/userData")
       .then((res) => setUserData(res.data))
       .catch((err) => console.log(err));
-  }, []);
+  }, [userData]);
 
   localStorage.setItem("userData", JSON.stringify(userData));
 

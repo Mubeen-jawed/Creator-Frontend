@@ -9,18 +9,19 @@ import NoData from "../../components/Elements/NoData";
 const CampaignActivity = () => {
   const [campaignData, setCampaignData] = useState([]);
   const [proposalData, setProposalData] = useState([]);
-  const [proposalId, setProposalId] = useState("");
+  const [campaignId, setCampaignId] = useState("");
   const [googleId, setGoogleId] = useState("");
+  const [creatorId, setCreatorId] = useState("");
 
   useEffect(() => {
-    const id = localStorage.getItem("proposalId");
-    setProposalId(id);
+    const id = localStorage.getItem("campaignId");
+    setCampaignId(id);
 
     const { googleId } = JSON.parse(localStorage.getItem("userData"));
     setGoogleId(googleId);
 
     campaignData.map((data) => {
-      if (data._id === proposalId) {
+      if (data._id === campaignId) {
         data.proposals !== undefined && setProposalData(data.proposals);
       }
     });
@@ -35,6 +36,21 @@ const CampaignActivity = () => {
 
   function saveCreatorChatId(data) {
     localStorage.setItem("creatorChatId", data?.creatorProfile?.googleId);
+    setCreatorId(data?.creatorProfile?.googleId);
+  }
+
+  function hireCreator(data) {
+    axios
+      .post("http://localhost:8080/hireCreator", {
+        hireCreatorId: data.creatorProfile._id,
+        campaignId: campaignId,
+      })
+      .catch((err) => console.log(err));
+
+    axios
+      .get(`http://localhost:8080/${creatorId}`)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   }
 
   return (
@@ -67,13 +83,18 @@ const CampaignActivity = () => {
                   <div className="flex flex-col items-end justify-start">
                     <Link
                       to="/hire-creator"
-                      onClick={() => saveCreatorChatId(data)}
+                      onClick={() => {
+                        saveCreatorChatId(data);
+                        hireCreator(data);
+                      }}
                       className="bg-[#580cd2] w-28 py-2 text-white rounded-full hover:brightness-95 hover:text-white flex justify-center items-center"
                     >
                       Hire
                     </Link>
                     <Link
-                      onClick={() => saveCreatorChatId(data)}
+                      onClick={() => {
+                        saveCreatorChatId(data);
+                      }}
                       to={`/${googleId}/messages`}
                       className="border-[#580cd2] border-solid border-2 w-28 py-2 text-[#580cd2] rounded-full mt-4 hover:bg-gray-100 flex justify-center items-center"
                     >

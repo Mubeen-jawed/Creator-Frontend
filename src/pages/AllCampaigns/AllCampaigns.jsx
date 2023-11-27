@@ -18,7 +18,7 @@ const ClientJobs = () => {
   }, []);
 
   function handleCampaignClick(id) {
-    localStorage.setItem("proposalId", id);
+    localStorage.setItem("campaignId", id);
     window.location.href = "/campaign-activity";
   }
 
