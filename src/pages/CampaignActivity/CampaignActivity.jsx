@@ -14,6 +14,13 @@ const CampaignActivity = () => {
   const [creatorId, setCreatorId] = useState("");
 
   useEffect(() => {
+    axios
+      .get(`http://localhost:8080/campaignActivity`)
+      .then((res) => setCampaignData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
+  useEffect(() => {
     const id = localStorage.getItem("campaignId");
     setCampaignId(id);
 
@@ -21,18 +28,12 @@ const CampaignActivity = () => {
     setGoogleId(googleId);
 
     campaignData.map((data) => {
+      console.log("yes");
       if (data._id === campaignId) {
         data.proposals !== undefined && setProposalData(data.proposals);
       }
     });
   }, [campaignData]);
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8080/proposal")
-      .then((res) => setCampaignData(res.data))
-      .catch((err) => console.log(err));
-  }, []);
 
   function saveCreatorChatId(data) {
     localStorage.setItem("creatorChatId", data?.creatorProfile?.googleId);

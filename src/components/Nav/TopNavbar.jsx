@@ -229,6 +229,13 @@ export default function TopNavbar() {
                     </a>
                   </li>
                 )}
+                {creator && (
+                  <li className="semiBold font15 pointer capitalize">
+                    <a href="/all-proposals" style={{ padding: "10px 15px" }}>
+                      Your contracts
+                    </a>
+                  </li>
+                )}
 
                 {client && (
                   <li className="semiBold font15 pointer">
@@ -276,22 +283,20 @@ export default function TopNavbar() {
                     <p className="text-sm mt-1">Messages</p>
                   </Link>
                 )}
-
-                {creator && (
-                  <Link
-                    to={`/${googleId}/alerts`}
-                    className="semiBold font15 pointer flex items-center flex-col pr-6"
-                  >
-                    <div className="mb-4">
-                      <FaRegBell className="text-xl absolute" />
-                      <div className="w-3 h-3 bg-red-600 relative -right-3 rounded-full text-[9px] text-center text-white ">
-                        1
-                      </div>
+                {/* {creator && ( */}
+                <Link
+                  to={`/${googleId}/alerts`}
+                  className="semiBold font15 pointer flex items-center flex-col pr-6"
+                >
+                  <div className="mb-4">
+                    <FaRegBell className="text-xl absolute" />
+                    <div className="w-3 h-3 bg-red-600 relative -right-3 rounded-full text-[9px] text-center text-white font-bold">
+                      1
                     </div>
-                    <p className="text-sm">Alerts</p>
-                  </Link>
-                )}
-
+                  </div>
+                  <p className="text-sm">Alerts</p>
+                </Link>
+                {/* )} */}
                 {(client || creator) && (
                   <Link
                     // to="/id/creator/profile"
@@ -304,7 +309,6 @@ export default function TopNavbar() {
                     <p>{name}</p>
                   </Link>
                 )}
-
                 {showOptions ? (
                   <ul className="absolute top-20 right-0 shadow-xl p-4 w-56 bg-white flex flex-col justify-start items-start">
                     <li className="flex">

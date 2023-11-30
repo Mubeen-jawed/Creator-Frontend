@@ -9,6 +9,7 @@ import NoData from "../../components/Elements/NoData";
 
 const ClientJobs = () => {
   const [userAllCampaigns, setUserAllCampaigns] = useState([]);
+  const [googleId, setGoogleId] = useState("");
 
   useEffect(() => {
     axios
@@ -19,8 +20,20 @@ const ClientJobs = () => {
 
   function handleCampaignClick(id) {
     localStorage.setItem("campaignId", id);
-    window.location.href = "/campaign-activity";
+    window.location.href = `/campaign-activity`;
   }
+
+  useEffect(() => {
+    let userData = JSON.parse(localStorage.getItem("userData"));
+
+    let userDataNull = userData === null || undefined;
+
+    if (!userDataNull) {
+      let { googleId } = userData;
+
+      setGoogleId(googleId);
+    }
+  }, [googleId]);
 
   // console.log(Array.isArray(userAllCampaigns));
 

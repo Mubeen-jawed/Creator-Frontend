@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 import TopNavbar from "../../components/Nav/TopNavbar";
+import { Link } from "react-router-dom";
 
 const MarketPlace = () => {
   const [campaignData, setCampaignData] = useState([]);
@@ -26,26 +27,22 @@ const MarketPlace = () => {
       .get("http://localhost:8080/campaignData")
       .then((res) => setCampaignData(res.data))
       .catch((err) => console.log(err));
-
-    const profile = JSON.parse(localStorage.getItem("userData"));
-    setCreatorProfile(profile);
   }, []);
 
   // console.log(jobClick);
 
   function handleProposalSend(e) {
+    const profile = JSON.parse(localStorage.getItem("userData"));
+
     axios
       .post("http://localhost:8080/proposal", {
         proposalValue: proposalValue,
-        creatorProfile: creatorProfile,
+        creatorProfile: profile,
         jobId: jobId,
       })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
     e.preventDefault();
-
-    window.location.href = "/proposal-send";
-    // console.log(jobId);
   }
 
   return (
@@ -100,12 +97,13 @@ const MarketPlace = () => {
                     onChange={(e) => setProposalValue(e.target.value)}
                   ></textarea>
                   <div className="w-full flex justify-end items-center ">
-                    <button
-                      className="radius8 font-semibold ml-5 capitalize bg-[#580cd2] px-3 py-2 text-white"
+                    <Link
+                      to="/proposal-send"
+                      className="radius8 hover:text-white font-semibold ml-5 capitalize bg-[#580cd2] px-3 py-2 text-white"
                       onClick={handleProposalSend}
                     >
                       Submit
-                    </button>
+                    </Link>
                   </div>
                 </form>
               </div>

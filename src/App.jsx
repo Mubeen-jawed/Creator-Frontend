@@ -97,7 +97,7 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/proposal-send" element={<ProposalSend />}></Route>
           <Route
-            path="/campaign-activity"
+            path={`/campaign-activity`}
             element={<CampaignActivity />}
           ></Route>
           <Route path="/all-campaigns" element={<AllCampaigns />}></Route>
